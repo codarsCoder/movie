@@ -1,8 +1,38 @@
-import React from 'react'
+import axios from 'axios'
+import {useState,useEffect} from 'react'
+import Search from '../component/Serach'
+import Card from '../component/Card'
 
 const Home = () => {
+  let api = process.env.REACT_APP_API;
+  const [search, setSearch] = useState("aşk")
+  const [allFilms, setAllFilms] = useState([])
+  const url = `https://api.themoviedb.org/3/search/movie?api_key=${api}&query=${search}`;
+  useEffect(() => {
+    getFilm()
+  }, [])
+  
+  const getFilm = async() => {
+    console.log(search,api)
+    const { data } = await axios(url).catch(err => console.log(err))
+    setAllFilms(data.results);
+    console.log(data.results);
+  }
   return (
-    <div>Home</div>
+    <>
+     <Search />
+    <div className="cart-wrapper  container">
+       {
+    allFilms?.map((item, i) => {
+      return (
+          <Card key={i} item={item} />
+      )
+    })
+  }
+    
+   
+    </div>
+   </>
   )
 }
 

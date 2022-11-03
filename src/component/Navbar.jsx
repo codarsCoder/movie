@@ -2,10 +2,10 @@ import { Link, NavLink, useNavigate } from "react-router-dom"
 
 
 const Navbar = () => {
-    const logIn = true
+    const logIn = false
 const navigate = useNavigate();
   return (
-    <nav className="navbar navbar-expand navbar-dark bg-back">
+    <nav className="navbar navbar-expand navbar-dark  bg-primary">
       <div className="container-fluid">
         <Link to="/" className="navbar-brand fs-3" >
           React Movie App
@@ -24,32 +24,37 @@ const navigate = useNavigate();
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         
-            <li className="nav-item">
-              <NavLink to="/account" className="nav-link active" aria-current="page">
-                My Account
-              </NavLink>
-            </li>
+           
           </ul>
           <ul className="navbar-nav">
-            {logIn ?  (
-                <>
+            
+            {!logIn ?  (
+                <div className="d-flex gap-3">
                    <li className="nav-item">
-              <button onClick={()=> navigate("/login", {state:false})}  className="nav-link active" aria-current="page">
-                Log Out
+              <button onClick={()=> navigate("/login", {state:false})}  className=" btn btn-outline-dark" aria-current="page">
+                LogIn
               </button>
             </li>
             <li className="nav-item">
-              <button onClick={()=> navigate("/login", {state:false})}  className="nav-link active" aria-current="page">
-                Log Out
+              <button onClick={()=> navigate("/register", {state:false})}  className=" btn btn-outline-light" aria-current="page">
+                Register
               </button>
             </li>  
-            </>
+            </div>
                 ) : (
+                  <div className="d-flex gap-3">
+                         <li className="nav-item">
+                  <NavLink to="/account" className="btn btn-outline-light" aria-current="page">
+                    My Account
+                  </NavLink>
+                </li>
                     <li className="nav-item">
-              <button onClick={()=> navigate("/login", {state:false})}  className="nav-link active" aria-current="page">
+              <button onClick={()=> navigate("/logout", {state:false})}  className=" btn btn-outline-light" aria-current="page">
                 Log Out
               </button>
             </li>
+                  </div>
+           
                 ) 
 
             }
