@@ -11,11 +11,12 @@
   box-shadow:1px 1px 1px  rgb(254, 95, 2),-1px -1px 1px  rgb(254, 95, 2) ;
 }
 .search-form{
- height: 60px;
+ height: 65px;
   background-color: rgb(87, 85, 85);
   display:flex;
   justify-content: center;
-  align-items: center !important;
+  align-items: center ;
+  padding-top: 15px;
 }
 .cart-wrapper{
   display: flex;
@@ -27,7 +28,10 @@
   width: 300px;
   height: 500px;
   position: relative;
-
+  overflow: hidden;
+}
+.cart:hover .description {
+  right: 0;
 }
 .cart img {
   width: 300px;
@@ -50,4 +54,17 @@
   font-weight: 700;
   width: 40px;
   text-align: center;
+}
+.description {
+  width: 300px;
+  height: auto;
+  display: flex;
+  position: absolute;
+  right: -300px;
+  bottom: 50px;
+  z-index: 99;
+  padding: 5px;
+  overflow:hidden ;
+  background-color: rgba(0, 255, 255, 0.836);
+  transition: right 0.5s;
 }

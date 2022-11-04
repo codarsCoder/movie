@@ -5,7 +5,7 @@ const Navbar = () => {
     const logIn = false
 const navigate = useNavigate();
   return (
-    <nav className="navbar navbar-expand navbar-dark  bg-primary">
+    <nav className="navbar navbar-expand navbar-collapse navbar-dark  bg-primary">
       <div className="container-fluid">
         <Link to="/" className="navbar-brand fs-3" >
           React Movie App

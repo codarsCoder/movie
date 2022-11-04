@@ -24,8 +24,8 @@ const Home = () => {
     <div className="cart-wrapper  container">
        {
     allFilms?.map((item, i) => {
-      const {poster_path,original_title,vote_average} = item
-      const sumItem = {poster_path,original_title,vote_average}
+      const {poster_path,original_title,vote_average,overview} = item
+      const sumItem = {poster_path,original_title,vote_average,overview}
       return (
           <Card key={i} {...sumItem} />
       )

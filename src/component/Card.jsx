@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Card = ({ poster_path,original_title,vote_average }) => {
+const Card = ({ poster_path,original_title,vote_average,overview}) => {
     return (
         <div className="cart">
 
@@ -11,6 +11,9 @@ const Card = ({ poster_path,original_title,vote_average }) => {
                 <div className="pop">
                     {vote_average}
                 </div>
+            </div>
+            <div className="description">
+            {overview}
             </div>
         </div>
 
