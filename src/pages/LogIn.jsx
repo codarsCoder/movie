@@ -1,9 +1,36 @@
-import React from 'react'
-
+import { useLoginContext } from "../context/LoginProvider"
+import { getUser } from "../auth/firebase"
+import { useState, useEffect } from "react"
+import toast, { Toaster } from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 const LogIn = () => {
-  const handleSubmit = ()=>{
-    
+  const {userL, setUserL}  = useLoginContext()
+  console.log(userL)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [message, setMessage] = useState(false)
+  const handleSubmit = (e)=>{
+    e.preventDefault()
+    getUser(email, password, setUserL, setMessage)
   }
+useEffect(() => {
+  getMessage()
+}, [message])
+
+//   var seconds = 1667544020351;
+// let time = new Date(seconds)
+// let normalDate = new Date(seconds).toLocaleString('tr-TR')
+const getMessage = ()=>{
+  const mes = message
+ mes && toast.error(mes)
+ 
+}
+const navigate =  useNavigate()
+
+  userL.email && navigate("/")
+
+
+
   return (
     <>
    <form onSubmit={(e)=> handleSubmit(e)} className="login-form">
@@ -16,6 +43,7 @@ const LogIn = () => {
       className="form-control"
       id="exampleInputEmail1"
       aria-describedby="emailHelp"
+      onChange={(e)=>setEmail(e.target.value)}
     />
   </div>
   <div className="mb-3">
@@ -26,6 +54,7 @@ const LogIn = () => {
       type="password"
       className="form-control"
       id="exampleInputPassword1"
+      onChange={(e)=>setPassword(e.target.value)}
     />
   </div>
   <div className="mb-3 form-check">
@@ -39,7 +68,7 @@ const LogIn = () => {
   </button>
 </form>
 
-   
+   <Toaster position="top-center" />
     </>
   )
 }

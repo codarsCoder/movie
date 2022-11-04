@@ -2,9 +2,11 @@ import axios from 'axios'
 import {useState,useEffect} from 'react'
 import Search from '../component/Serach'
 import Card from '../component/Card'
+import { Toaster } from 'react-hot-toast'
 
 const Home = () => {
   let api = process.env.REACT_APP_API;
+  const [message, setMessage] = useState("")
   const [search, setSearch] = useState("aşk")
   const [allFilms, setAllFilms] = useState([])
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${api}&query=${search}`;
@@ -32,7 +34,7 @@ const Home = () => {
     })
   }
     
-   
+   <Toaster />
     </div>
    </>
   )

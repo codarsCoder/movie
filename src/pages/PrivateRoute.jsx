@@ -1,9 +1,11 @@
 import { Outlet,Navigate } from "react-router-dom"
+import { useLoginContext } from "../context/LoginProvider"
 const PrivateRoute = () => {
-    const logIn = true
+    const {userL} =  useLoginContext()
+
    return (
   
-     logIn ? <Outlet/> : <Navigate to="/login"/>
+    userL.email ? <Outlet/> : <Navigate to="/login"/>
    )
  }
  
