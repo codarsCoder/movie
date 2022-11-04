@@ -3,9 +3,9 @@ import { getUser } from "../auth/firebase"
 import { useState, useEffect } from "react"
 import toast, { Toaster } from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
+import resim from '../assets/login.png'
 const LogIn = () => {
   const {userL, setUserL}  = useLoginContext()
-  console.log(userL)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [message, setMessage] = useState(false)
@@ -32,7 +32,12 @@ const navigate =  useNavigate()
 
 
   return (
-    <>
+    <div className="loginn" style={{  
+      backgroundImage: `url(${resim})`,
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat'
+    }}>
    <form onSubmit={(e)=> handleSubmit(e)} className="login-form">
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">
@@ -69,7 +74,7 @@ const navigate =  useNavigate()
 </form>
 
    <Toaster position="top-center" />
-    </>
+    </div>
   )
 }
 

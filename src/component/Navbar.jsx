@@ -1,8 +1,11 @@
 import { Link, NavLink, useNavigate } from "react-router-dom"
 import { useLoginContext } from "../context/LoginProvider";
+import { useState } from "react";
 
 const Navbar = () => {
-  const {userL} =  useLoginContext()
+  const {userL } =  useLoginContext()
+const [loginUser, setLoginUser] = useState("")
+
 const navigate = useNavigate();
   return (
     <nav className="navbar navbar-expand navbar-collapse navbar-dark  bg-primary">
@@ -28,7 +31,7 @@ const navigate = useNavigate();
           </ul>
           <ul className="navbar-nav">
             
-            {!userL ?  (
+            {!userL.email ?  (
                 <div className="d-flex gap-3">
                    <li className="nav-item">
               <button onClick={()=> navigate("/login", {state:false})}  className=" btn btn-outline-dark" aria-current="page">

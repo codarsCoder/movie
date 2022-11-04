@@ -3,7 +3,8 @@ import {useState,useEffect} from 'react'
 import Search from '../component/Serach'
 import Card from '../component/Card'
 import { Toaster } from 'react-hot-toast'
-
+import { auth } from '../auth/firebase'
+import { onAuthStateChanged } from 'firebase/auth'
 const Home = () => {
   let api = process.env.REACT_APP_API;
   const [message, setMessage] = useState("")
@@ -13,12 +14,10 @@ const Home = () => {
   useEffect(() => {
     getFilm()
   }, [])
-  
+
   const getFilm = async() => {
-    console.log(search,api)
     const { data } = await axios(url).catch(err => console.log(err))
     setAllFilms(data.results);
-    console.log(data.results);
   }
   return (
     <>
