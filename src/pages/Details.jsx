@@ -1,5 +1,4 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
@@ -7,11 +6,11 @@ const Details = () => {
   const { id } = useParams()
   let apiKey = process.env.REACT_APP_API;
   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
-
+  const navigate = useNavigate()
   const [filmDetail, setFilmDetail] = useState([])
   const [video, setVideo] = useState("")
   const [videoW, setVideoW] = useState(false)
-const [viewAll, setViewAll] = useState(false)
+  const [viewAll, setViewAll] = useState(false)
   useEffect(() => {
     getFilm()
   }, [])
@@ -27,27 +26,27 @@ const [viewAll, setViewAll] = useState(false)
   return (
     <div className="container p-0 bg-dark text-light d-flex align-items-center flex-column mt-3  mb-5">
 
-   {videoW ? (
-          <div className="embed-responsive embed-responsive-16by9">
-            <iframe className="embed-responsive-item" src={video} ></iframe>
-          </div>
-        ) : (
-          <div>
-            <figure className="figure p-3" >
-              <img
-                src={`https://image.tmdb.org/t/p/w1280${filmDetail.backdrop_path}`}
-                className="figure-img img-fluid rounded"
-                alt="figure-img"
-              />
-              <figcaption className="figure-caption">
+      {videoW ? (
+        <div className="embed-responsive embed-responsive-16by9">
+          <iframe className="embed-responsive-item" src={video} ></iframe>
+        </div>
+      ) : (
+        <div>
+          <figure className="figure p-3" >
+            <img
+              src={`https://image.tmdb.org/t/p/w1280${filmDetail.backdrop_path}`}
+              className="figure-img img-fluid rounded"
+              alt="figure-img"
+            />
+            <figcaption className="figure-caption">
 
-              </figcaption>
-            </figure>
-          </div>
-        )
+            </figcaption>
+          </figure>
+        </div>
+      )
 
-        }
-     
+      }
+
       <div className=" bg-dark text-light genres">
         {
           filmDetail.genres?.map((item, i) => {
@@ -58,7 +57,7 @@ const [viewAll, setViewAll] = useState(false)
         }
       </div>
       {/* details */}
-      <hr  />
+      <hr />
       <div className=" detail-context">
         <div className="card  p-3 bg-dark">
           <div className="row g-0">
@@ -85,29 +84,29 @@ const [viewAll, setViewAll] = useState(false)
                   <span className='fs-5'>Original Title : </span> {filmDetail.original_title}
                 </p>
                 <p className="card-text">
-                <span className='fs-5'>Vote : </span>{filmDetail.vote_count}
+                  <span className='fs-5'>Vote : </span>{filmDetail.vote_count}
                 </p>
                 <p className="card-text">
-                <span className='fs-5'>Average : </span>{filmDetail.vote_average}
+                  <span className='fs-5'>Average : </span>{filmDetail.vote_average}
 
                 </p>
                 <p className="card-text">
-                <span className='fs-5'>Runtime : </span>{filmDetail.runtime} M.
+                  <span className='fs-5'>Runtime : </span>{filmDetail.runtime} M.
 
                 </p>
                 <p className="card-text">
-                <span className='fs-5'>Relase Date : </span>{filmDetail.release_date}
+                  <span className='fs-5'>Relase Date : </span>{filmDetail.release_date}
 
                 </p>
                 <p className="card-text">
-                <span className='fs-5'>Home Page : </span><a  target="_blank" href={filmDetail.homepage}>{filmDetail.homepage}</a> 
+                  <span className='fs-5'>Home Page : </span><a target="_blank" href={filmDetail.homepage}>{filmDetail.homepage}</a>
                 </p>
               </div>
             </div>
           </div>
         </div>
       </div>
- 
+      <button onClick={() => navigate(-1)} className="btn btn-link mt-5 fs-5">Go Back</button>
     </div>
   )
 }

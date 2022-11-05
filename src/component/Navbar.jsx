@@ -1,13 +1,19 @@
 import { Link, NavLink, useNavigate } from "react-router-dom"
 import { useLoginContext } from "../context/LoginProvider";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { signPopup } from "../auth/firebase";
 
 const Navbar = () => {
-  const {userL,setUserL } =  useLoginContext()
+  
+  useEffect(() => {
+    setLogin(true)
+  }, [])
+  
+  const [login, setLogin] = useState(false)
+  const { userL, setUserL } = useLoginContext()
 
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <nav className="navbar navbar-expand-md navbar-collapse navbar-dark  bg-primary">
       <div className="container-fluid">
@@ -27,48 +33,50 @@ const navigate = useNavigate();
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        
-           
+
+
           </ul>
           <ul className="navbar-nav">
-            
-            {!userL.email ?  (
-                <div className="d-flex gap-3">
-                   <li className="nav-item">
-              <button onClick={()=> navigate("/login")}  className=" btn btn-outline-dark" aria-current="page">
-                LogIn
-              </button>
-            </li>
-                   <li className="nav-item">
-              <button onClick={()=>signPopup(setUserL)}  className=" btn btn-outline-dark" aria-current="page">
-                LogIn with google
-              </button>
-            </li>
-            <li className="nav-item">
-              <button onClick={()=> navigate("/register")}  className=" btn btn-outline-light" aria-current="page">
-                Register
-              </button>
-            </li>  
-            </div>
-                ) : (
-                  <div className="d-flex gap-3">
-                         <li className="nav-item">
-                  <NavLink to="/account" className="btn btn-outline-light" aria-current="page">
-                    {userL.user ? userL.user : "My Account" }
+
+            { 
+            login ? (
+            !userL.email ? (
+              <div className="d-flex gap-3">
+                <li className="nav-item">
+                  <button onClick={() => navigate("/login")} className=" btn btn-outline-dark" aria-current="page">
+                    LogIn
+                  </button>
+                </li>
+                <li className="nav-item">
+                  <button onClick={() => signPopup(setUserL)} className=" btn btn-outline-dark" aria-current="page">
+                    LogIn with google
+                  </button>
+                </li>
+                <li className="nav-item">
+                  <button onClick={() => navigate("/register")} className=" btn btn-outline-light" aria-current="page">
+                    Register
+                  </button>
+                </li>
+              </div>
+             ) : (
+              <div className="d-flex gap-3">
+                <li className="nav-item">
+                  <NavLink  className="btn btn-outline-light" aria-current="page">
+                    {userL.user ? userL.user : "My Account"}
                   </NavLink>
                 </li>
-                    <li className="nav-item">
-              <button onClick={()=> navigate("/logout")}  className=" btn btn-outline-light" aria-current="page">
-                Log Out
-              </button>
-            </li>
-                  </div>
-           
-                ) 
+                <li className="nav-item">
+                  <button onClick={() => navigate("/logout")} className=" btn btn-outline-light" aria-current="page">
+                    Log Out
+                  </button>
+                </li>
+              </div>
 
+             )
+            ) : null
             }
-         
-           
+
+
           </ul>
         </div>
       </div>
