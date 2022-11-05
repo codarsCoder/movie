@@ -10,7 +10,7 @@ const LogIn = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [message, setMessage] = useState(false)
-  
+
   const handleSubmit = (e)=>{
     e.preventDefault()
     getUser(email, password, setUserL, setMessage)
@@ -33,7 +33,7 @@ const navigate =  useNavigate()
   userL.email && navigate("/")
 
   return (
-    <div className="loginn" style={{  
+    <div className="loginn  mb-2"  style={{  
       backgroundImage: `url(${resim})`,
       backgroundPosition: 'center',
       backgroundSize: 'cover',

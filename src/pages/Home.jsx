@@ -38,7 +38,7 @@ console.log(userL,"home")
   return (
     <>
       <Search setSearch={setSearch} getFilm={getFilm} search={search} />
-      <div className="cart-wrapper  container">
+      <div className="cart-wrapper  container mb-5">
         {
           allFilms?.map((item, i) => {
             const { poster_path, original_title, vote_average, overview, id } = item

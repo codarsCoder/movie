@@ -25,7 +25,7 @@ const [viewAll, setViewAll] = useState(false)
     setViewAll(true)
   }
   return (
-    <div className="container p-0 bg-dark text-light d-flex align-items-center flex-column mt-3">
+    <div className="container p-0 bg-dark text-light d-flex align-items-center flex-column mt-3  mb-5">
 
    {videoW ? (
           <div className="embed-responsive embed-responsive-16by9">
