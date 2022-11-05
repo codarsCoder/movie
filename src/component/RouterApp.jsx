@@ -7,6 +7,7 @@ import Details from '../pages/Details'
 import LogIn from '../pages/LogIn'
 import LogOut from '../pages/LogOut'
 import Register from '../pages/Register'
+import Account from '../pages/Account'
 import PrivateRoute from '../pages/PrivateRoute'
 
 
@@ -15,6 +16,7 @@ const RouterApp = () => {
   return (
     <Routes>
      
+    <Route path="/account" element={<Account />} />
     <Route path="/logout" element={<LogOut />} />
     <Route path="/login" element={<LogIn />} />
     <Route path="/register" element={<Register />} />

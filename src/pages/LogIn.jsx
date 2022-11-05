@@ -4,11 +4,13 @@ import { useState, useEffect } from "react"
 import toast, { Toaster } from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 import resim from '../assets/login.png'
+
 const LogIn = () => {
   const {userL, setUserL}  = useLoginContext()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [message, setMessage] = useState(false)
+  
   const handleSubmit = (e)=>{
     e.preventDefault()
     getUser(email, password, setUserL, setMessage)
@@ -17,6 +19,7 @@ useEffect(() => {
   getMessage()
 }, [message])
 
+console.log(userL,"login");
 //   var seconds = 1667544020351;
 // let time = new Date(seconds)
 // let normalDate = new Date(seconds).toLocaleString('tr-TR')
@@ -28,8 +31,6 @@ const getMessage = ()=>{
 const navigate =  useNavigate()
 
   userL.email && navigate("/")
-
-
 
   return (
     <div className="loginn" style={{  

@@ -1,15 +1,14 @@
-const Search = ({setSearch,getFilm}) => {
+const Search = ({setSearch,getFilm,search}) => {
 
 const setText = (e) => {
     e.preventDefault();
     setSearch(e.target.searchT.value)
-    console.log(e.target.searchT.value)
     getFilm(true)
 }
 
     return (
-        <div className="row  search-form ">
-<form  onSubmit={setText} className="  d-flex d-flex align-items-baseline w-50 g-3 m-auto ">
+        <div className=" search-form ">
+<form  onSubmit={setText} className="  d-flex d-flex align-items-baseline col-6 g-3 m-auto ">
       
       <div className="col-8 me-3 d-flex align-items-center">
           <input
@@ -17,6 +16,8 @@ const setText = (e) => {
               type="text"
               className="form-control"
               placeholder="Search"
+              value={search}
+              onChange={(e)=>setSearch(e.target.value)}
               required
           />
       </div>

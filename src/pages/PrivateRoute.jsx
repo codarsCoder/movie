@@ -12,6 +12,7 @@ const [login, setLogin] = useState(false)
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                   setUserL({user:user.email, email:user.email})
+                  console.log(user.email);
                   setLogin(true)
                 } else {
                   setLogin(true)

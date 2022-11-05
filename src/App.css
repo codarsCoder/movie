@@ -1,3 +1,7 @@
+*{
+  padding: 0;
+  margin: 0;
+}
 .loginn{
   background-image: url("./assets/login.png");
 background-position: center;
@@ -97,6 +101,38 @@ background-attachment: fixed;
   transition: right 0.5s;
   cursor: pointer;
 }
+
+.detail-media img {
+  /* width: 80vw !important; */
+  height: auto;
+}
+.detail-body p{
+border-bottom: 1px solid white;
+padding:5px;
+font-size: 18px;
+font-weight: 500;
+}
+.detail-body p a{
+color: rgba(255, 255, 255, 0.865);
+}
+.genres{
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: center;
+  gap:15px
+ 
+}
+.genres p {
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 5px;
+}
+.card {
+  border:none !important;
+  width:100%
+}
+
 /* scroolbar setting */
 ::-webkit-scrollbar {
   width: 6px;
