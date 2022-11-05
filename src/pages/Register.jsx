@@ -21,6 +21,7 @@ const Register = () => {
       backgroundRepeat: 'no-repeat'
     }}>
    <form onSubmit={(e)=> handleSubmit(e)} className="login-form">
+    <h3>Register</h3>
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">
       Email address
