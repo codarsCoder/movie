@@ -11,22 +11,24 @@ const Home = () => {
   const [search, setSearch] = useState("aşk")
   const [allFilms, setAllFilms] = useState([])
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${api}&query=${search}`;
+  const url2 = `https://api.themoviedb.org/3/discover/movie?api_key=${api}`
   useEffect(() => {
-    getFilm()
+    getFilm(false)
   }, [])
 
-  const getFilm = async() => {
-    const { data } = await axios(url).catch(err => console.log(err))
+  const getFilm = async(prob) => {
+    const { data } = await axios(prob ? url: url2).catch(err => console.log(err))
     setAllFilms(data.results);
+    console.log(data.results);
   }
   return (
     <>
-     <Search />
+     <Search setSearch = {setSearch} getFilm={getFilm} />
     <div className="cart-wrapper  container">
        {
     allFilms?.map((item, i) => {
-      const {poster_path,original_title,vote_average,overview} = item
-      const sumItem = {poster_path,original_title,vote_average,overview}
+      const {poster_path,original_title,vote_average,overview,id} = item
+      const sumItem = {poster_path,original_title,vote_average,overview,id}
       return (
           <Card key={i} {...sumItem} />
       )

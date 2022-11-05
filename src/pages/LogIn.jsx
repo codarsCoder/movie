@@ -49,6 +49,7 @@ const navigate =  useNavigate()
       id="exampleInputEmail1"
       aria-describedby="emailHelp"
       onChange={(e)=>setEmail(e.target.value)}
+      autoFocus
     />
   </div>
   <div className="mb-3">
@@ -62,12 +63,12 @@ const navigate =  useNavigate()
       onChange={(e)=>setPassword(e.target.value)}
     />
   </div>
-  <div className="mb-3 form-check">
+  {/* <div className="mb-3 form-check">
     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
     <label className="form-check-label" htmlFor="exampleCheck1">
       Check me out
     </label>
-  </div>
+  </div> */}
   <button type="submit" className="btn btn-primary">
     Submit
   </button>

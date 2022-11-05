@@ -1,10 +1,11 @@
 import { Link, NavLink, useNavigate } from "react-router-dom"
 import { useLoginContext } from "../context/LoginProvider";
 import { useState } from "react";
+import { signPopup } from "../auth/firebase";
 
 const Navbar = () => {
-  const {userL } =  useLoginContext()
-const [loginUser, setLoginUser] = useState("")
+  const {userL,setUserL } =  useLoginContext()
+
 
 const navigate = useNavigate();
   return (
@@ -34,12 +35,17 @@ const navigate = useNavigate();
             {!userL.email ?  (
                 <div className="d-flex gap-3">
                    <li className="nav-item">
-              <button onClick={()=> navigate("/login", {state:false})}  className=" btn btn-outline-dark" aria-current="page">
+              <button onClick={()=> navigate("/login")}  className=" btn btn-outline-dark" aria-current="page">
                 LogIn
               </button>
             </li>
+                   <li className="nav-item">
+              <button onClick={()=>signPopup(setUserL)}  className=" btn btn-outline-dark" aria-current="page">
+                LogIn with google
+              </button>
+            </li>
             <li className="nav-item">
-              <button onClick={()=> navigate("/register", {state:false})}  className=" btn btn-outline-light" aria-current="page">
+              <button onClick={()=> navigate("/register")}  className=" btn btn-outline-light" aria-current="page">
                 Register
               </button>
             </li>  
@@ -52,7 +58,7 @@ const navigate = useNavigate();
                   </NavLink>
                 </li>
                     <li className="nav-item">
-              <button onClick={()=> navigate("/logout", {state:false})}  className=" btn btn-outline-light" aria-current="page">
+              <button onClick={()=> navigate("/logout")}  className=" btn btn-outline-light" aria-current="page">
                 Log Out
               </button>
             </li>
