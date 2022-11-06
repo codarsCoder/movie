@@ -95,7 +95,7 @@ background-attachment: fixed;
   right: -300px;
   bottom: 50px;
   z-index: 99;
-  padding: 5px;
+  padding: 15px;
   overflow-y:auto ;
   background-color: rgba(0, 255, 255, 0.954);
   transition: right 0.5s;

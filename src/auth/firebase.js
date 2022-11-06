@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth,GoogleAuthProvider,signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,onAuthStateChanged } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 const firebaseConfig = {
@@ -15,7 +15,7 @@ const firebaseConfig = {
 
 
 
-const  app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
@@ -26,15 +26,15 @@ export const getUser = (email, password, setUserL, setMessage) => {
             const user = userCredential.user;
             setUserL({ user: user.reloadUserInfo.email, email: user.reloadUserInfo.email });
             //  user ?  setUserState({email:"111",password:"2222"}) : setUserState({email:"yok",password:"yok"})
-          const uss = auth.currentUser
+            const uss = auth.currentUser
         })
         .catch((error) => {
 
-            setMessage(error.code.replaceAll("firebase:",""))
+            setMessage(error.code.replaceAll("firebase:", ""))
         });
 }
 
-export const createUser = (email, password,setUserL) => {
+export const createUser = (email, password, setUserL) => {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in
@@ -49,8 +49,8 @@ export const createUser = (email, password,setUserL) => {
 export const signOutUser = (setUserL) => {
     signOut(auth)
         .then((userCredential) => {
-            setUserL({ user: "", email: ""});
-           
+            setUserL({ user: "", email: "" });
+
         })
         .catch((error) => {
             console.log(error);
@@ -60,16 +60,27 @@ export const signPopup = (setUserL) => {
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
-      .then((result) => {
-        // The signed-in user info.
-        const user = result.user;
-        setUserL({ user: user.reloadUserInfo.email, email: user.reloadUserInfo.email });
+        .then((result) => {
+            // The signed-in user info.
+            const user = result.user;
+            setUserL({ user: user.reloadUserInfo.email, email: user.reloadUserInfo.email });
 
-        console.log(user,"google ile giriş yapıldı");
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        console.log(error);
+            console.log(user, "google ile giriş yapıldı");
+        })
+        .catch((error) => {
+            // Handle Errors here.
+            console.log(error);
+        });
+}
+
+export const authControl = (setUserL) => {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setUserL(user)
+  
+        } else {
+            setUserL(false)
+        }
       });
 }
 

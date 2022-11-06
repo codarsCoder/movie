@@ -39,7 +39,7 @@ const Navbar = () => {
           <ul className="navbar-nav">
 
             { 
-            login ? (
+            login && (
             !userL.email ? (
               <div className="d-flex gap-3">
                 <li className="nav-item">
@@ -62,7 +62,7 @@ const Navbar = () => {
               <div className="d-flex gap-3">
                 <li className="nav-item">
                   <NavLink  className="btn btn-outline-light" aria-current="page">
-                    {userL.user ? userL.user : "My Account"}
+                    {userL.email ? userL.email : "My Account"}
                   </NavLink>
                 </li>
                 <li className="nav-item">
@@ -73,7 +73,7 @@ const Navbar = () => {
               </div>
 
              )
-            ) : null
+            )
             }
 
 

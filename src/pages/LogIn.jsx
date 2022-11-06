@@ -6,77 +6,78 @@ import { useNavigate } from "react-router-dom"
 import resim from '../assets/login.png'
 
 const LogIn = () => {
-  const {userL, setUserL}  = useLoginContext()
+
+  const { userL, setUserL } = useLoginContext()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [message, setMessage] = useState(false)
 
-  const handleSubmit = (e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault()
     getUser(email, password, setUserL, setMessage)
   }
-useEffect(() => {
-  getMessage()
-}, [message])
+  useEffect(() => {
+    getMessage()
+  }, [message])
 
-console.log(userL,"login");
-//   var seconds = 1667544020351;
-// let time = new Date(seconds)
-// let normalDate = new Date(seconds).toLocaleString('tr-TR')
-const getMessage = ()=>{
-  const mes = message
- mes && toast.error(mes)
- 
-}
-const navigate =  useNavigate()
+  console.log(userL.email, "login");
+  //   var seconds = 1667544020351;
+  // let time = new Date(seconds)
+  // let normalDate = new Date(seconds).toLocaleString('tr-TR')
+  const getMessage = () => {
+    const mes = message
+    mes && toast.error(mes)
+
+  }
+  const navigate = useNavigate()
 
   userL.email && navigate("/")
 
   return (
-    <div className="loginn  mb-2"  style={{  
+    <div className="loginn  mb-2" style={{
       backgroundImage: `url(${resim})`,
       backgroundPosition: 'center',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat'
     }}>
-   <form onSubmit={(e)=> handleSubmit(e)} className="login-form">
-  <div className="mb-3">
-  <h3>Login</h3>
-    <label htmlFor="exampleInputEmail1" className="form-label">
-      Email address
-    </label>
-    <input
-      type="email"
-      className="form-control"
-      id="exampleInputEmail1"
-      aria-describedby="emailHelp"
-      onChange={(e)=>setEmail(e.target.value)}
-      autoFocus
-    />
-  </div>
-  <div className="mb-3">
-    <label htmlFor="exampleInputPassword1" className="form-label">
-      Password
-    </label>
-    <input
-      type="password"
-      className="form-control"
-      id="exampleInputPassword1"
-      onChange={(e)=>setPassword(e.target.value)}
-    />
-  </div>
-  {/* <div className="mb-3 form-check">
+      <form onSubmit={(e) => handleSubmit(e)} className="login-form">
+        <div className="mb-3">
+          <h3>Login</h3>
+          <label htmlFor="exampleInputEmail1" className="form-label">
+            Email address
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            onChange={(e) => setEmail(e.target.value)}
+            autoFocus
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputPassword1" className="form-label">
+            Password
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="exampleInputPassword1"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        {/* <div className="mb-3 form-check">
     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
     <label className="form-check-label" htmlFor="exampleCheck1">
       Check me out
     </label>
   </div> */}
-  <button type="submit" className="btn btn-primary">
-    Submit
-  </button>
-</form>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </form>
 
-   <Toaster position="top-center" />
+      <Toaster position="top-center" />
     </div>
   )
 }

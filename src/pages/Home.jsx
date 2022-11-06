@@ -12,15 +12,8 @@ const Home = () => {
   const { userL,allFilms, setAllFilms } = useLoginContext()
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${api}&query=${search}`;
   const url2 = `https://api.themoviedb.org/3/discover/movie?api_key=${api}`
-  // useEffect(() => {
-  //   if (search) {
-  //     getFilm(true)
-      
-  //   } else {
-  //     getFilm(false)
-  //   }
 
-  // }, [])
+  console.log(userL.email,"userl-home");
   useEffect(() => {
     if (search) {
       getFilm(true)
@@ -30,10 +23,11 @@ const Home = () => {
     }
 
   }, [])
-console.log(userL,"home")
+
   const getFilm = async (prob) => {
     const { data } = await axios(prob ? url : url2).catch(err => console.log(err))
     setAllFilms(data.results);
+    console.log(data.results,"home")
   }
   return (
     <>
