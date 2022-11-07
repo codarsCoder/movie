@@ -31,13 +31,12 @@ const LogIn = () => {
   }
   const navigate = useNavigate()
 
-  
+
 
   return (
     <>
    { userL.email && navigate("/")}
     
- 
         <div className="loginn  mb-2" style={{
           backgroundImage: `url(${resim})`,
           backgroundPosition: 'center',
