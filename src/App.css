@@ -63,6 +63,7 @@ background-attachment: fixed;
 .cart img {
   width: 300px;
   height: 450px;
+  cursor: pointer;
 }
 .cart-footer {
   padding:5px 10px;
@@ -81,6 +82,7 @@ background-attachment: fixed;
   height: 50px;
   word-wrap: break-word;
   word-break:break-all ;
+
 }
 .pop-text {
   width: 240px;

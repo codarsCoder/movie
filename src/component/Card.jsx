@@ -15,9 +15,16 @@ const Card = ({ poster_path,original_title,vote_average,overview,id}) => {
                     {vote_average}
                 </div>
             </div>
-            <div  onClick={()=> navigate(`details/${id}`)} className="description">
+            {overview && 
+            <> 
+            return (
+                <div  onClick={()=> navigate(`details/${id}`)} className="description">
             {overview}
-            </div>
+            </div> 
+            )
+            </>
+           }
+           
         </div>
 
     )
