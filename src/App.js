@@ -8,12 +8,14 @@ import LoginProvider from './context/LoginProvider';
 
 function App() {
   return (
+    <div className="app-wrapper">
     <LoginProvider>
     <BrowserRouter>
     <Navbar />
     <RouterApp />
     </BrowserRouter>
  </LoginProvider>
+ </div>
   );
 }
 

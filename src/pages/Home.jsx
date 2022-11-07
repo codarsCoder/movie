@@ -30,7 +30,7 @@ const Home = () => {
     console.log(data.results,"home")
   }
   return (
-    <>
+    <div className="home-wrapper">
       <Search setSearch={setSearch} getFilm={getFilm} search={search} />
       <div className="cart-wrapper  container mb-5">
         {
@@ -45,7 +45,7 @@ const Home = () => {
 
         <Toaster />
       </div>
-    </>
+      </div>
   )
 }
 

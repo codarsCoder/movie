@@ -2,6 +2,12 @@
   padding: 0;
   margin: 0;
 }
+.home-wrapper ,.details-wrapper,.app-wrapper, .genres{
+  background-color:rgb(20, 20, 31) ;
+}
+.details-wrapper .card {
+  background-color: #343444
+}
 .loginn{
   background-image: url("./assets/login.png");
 background-position: center;
@@ -28,7 +34,7 @@ background-attachment: fixed;
 }
 .search-form{
  height: 65px;
-  background-color: rgb(87, 85, 85);
+  background-color: rgb(244 127 23);
   display:flex;
   justify-content: center;
   align-items: center ;
@@ -59,7 +65,7 @@ background-attachment: fixed;
   height: 450px;
 }
 .cart-footer {
-  padding:5px 2px;
+  padding:5px 10px;
   display: flex;
   /* justify-content: space-around; */
   gap:10px;
@@ -89,17 +95,18 @@ background-attachment: fixed;
 }
 .description {
   width: 300px;
-  height: 450px;
+  height: 300px;
   display: flex;
   position: absolute;
   right: -300px;
   bottom: 50px;
   z-index: 99;
   padding: 15px;
-  overflow-y:auto ;
-  background-color: rgba(0, 255, 255, 0.954);
+  overflow-y: auto;
+  background-color: rgb(231 145 69);
   transition: right 0.5s;
   cursor: pointer;
+  color: white;
 }
 
 .detail-media img {
@@ -150,4 +157,40 @@ color: rgba(255, 255, 255, 0.865);
 ::-webkit-scrollbar-track {
   box-shadow: none;
   background-color: transparent;
+}
+
+.card{
+  box-shadow: -1px 15px 30px -10px black;
+}
+.card-wr-bg:hover{
+  background-color: #f4dd97;
+  cursor: pointer;
+  transition: all 1s ease;
+  transform: scale(1.04);
+}
+.card-s-bg:hover{
+  background-color: #8bdfb8;
+  cursor: pointer;
+  transition: all 1s ease;
+  transform: scale(1.04);
+}
+.card-d-bg:hover{
+  background-color: #f07a85;
+  cursor: pointer;
+  transition: all 1s ease;
+  transform: scale(1.04);
+}
+.card-footer{
+  justify-content:space-around;
+  text-align: center;
+  display: flex;
+  padding: 0px!important;
+}
+.card-footer div{
+  flex-grow: 1 !important;
+  border-right: 1px solid #dbdbdb;
+  padding: 10px 0;
+}
+.card-footer div:last-child{
+border-right: none;    
 }
