@@ -47,7 +47,7 @@ const Details = () => {
 
       }
 
-      <div className="  text-light genres">
+      <div className=" text-light genres">
         {
           filmDetail.genres?.map((item, i) => {
             return (
@@ -59,7 +59,7 @@ const Details = () => {
       {/* details */}
       <hr />
       <div className=" detail-context">
-        <div className="card  p-3 ">
+        <div className="card  p-3">
           <div className="row g-0">
             <div className="col-5 col-sm-4">
               <img
@@ -68,7 +68,7 @@ const Details = () => {
                 alt="card-horizontal-image"
               />
             </div>
-            <div className="  text-light col-7 col-sm-8">
+            <div className=" text-light col-7 col-sm-8">
               <div className="card-body detail-body">
                 <h1 className="card-title">{filmDetail.title}</h1>
                 <p className="card-text fs-4">

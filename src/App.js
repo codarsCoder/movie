@@ -4,6 +4,7 @@ import './App.css';
 import { BrowserRouter } from 'react-router-dom/dist';
 import RouterApp from './component/RouterApp';
 import LoginProvider from './context/LoginProvider';
+import Footer from './component/Footer';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <BrowserRouter>
     <Navbar />
     <RouterApp />
+    <Footer/>
     </BrowserRouter>
  </LoginProvider>
  </div>

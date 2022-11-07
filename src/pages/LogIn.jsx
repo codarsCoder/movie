@@ -37,8 +37,7 @@ const LogIn = () => {
     <>
    { userL.email && navigate("/")}
     
-    {
-      !!userL.email && (
+ 
         <div className="loginn  mb-2" style={{
           backgroundImage: `url(${resim})`,
           backgroundPosition: 'center',
@@ -85,8 +84,7 @@ const LogIn = () => {
 
           <Toaster position="top-center" />
         </div>
-      )
-    }
+   
   </>
   )
 }

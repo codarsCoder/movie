@@ -13,9 +13,8 @@
 background-position: center;
 background-size: contain;
 background-attachment: fixed;
-  position: fixed;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 150px);
   display: grid;
   place-items: center;
 }
@@ -151,7 +150,7 @@ color: rgba(255, 255, 255, 0.865);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(243, 234, 234, 0.5);
   -webkit-border-radius: 6px;
   border-radius: 6px;
 }
@@ -195,4 +194,17 @@ color: rgba(255, 255, 255, 0.865);
 }
 .card-footer div:last-child{
 border-right: none;    
+}
+.footer-wrapper {
+  height: 100px;
+  line-height: 100px;
+ color: azure;
+}
+.footer-wrapper a{
+ text-decoration: none;
+ color: azure;
+}
+.footer-wrapper a:hover{
+ text-decoration: underline;
+ color: rgb(3, 9, 9);
 }
