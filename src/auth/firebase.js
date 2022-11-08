@@ -1,7 +1,5 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 const firebaseConfig = {
     apiKey: "AIzaSyDK7W_BY5MD9gw1KJ7sdcNfbZtD5cE-rIU",
     authDomain: "mydb-10cd6.firebaseapp.com",
@@ -12,7 +10,6 @@ const firebaseConfig = {
     measurementId: "G-TDR0CNY9VQ",
     // databaseURL: "https://myDb.firebaseio.com",
 };
-
 
 
 const app = initializeApp(firebaseConfig);
@@ -56,12 +53,12 @@ export const signOutUser = (setUserL) => {
 }
 export const signPopup = (setUserL) => {
     const provider = new GoogleAuthProvider();
-
     signInWithPopup(auth, provider)
         .then((result) => {
             // The signed-in user info.
             const user = result.user;
             setUserL(user);
+
         })
         .catch((error) => {
             // Handle Errors here.

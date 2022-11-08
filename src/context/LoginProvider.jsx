@@ -11,7 +11,6 @@ const LoginProvider = ({ children }) => {
 
   useEffect(() => {
     authControl(setUserL,setLoading)
-    console.log( authControl(setUserL),"login providerden");
   }, [])
   
   return (

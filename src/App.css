@@ -2,35 +2,49 @@
   padding: 0;
   margin: 0;
 }
+.navbar {
+  background-color: rgba(144, 101, 184, 0.87) !important;
+}
 .home-wrapper ,.details-wrapper,.app-wrapper, .genres{
   background-color:rgb(20, 20, 31) ;
+}
+.home-wrapper {
+  min-height:100vh;
+}
+.details-wrapper  {
+  min-height:100vh;
+  min-width: 100vw;
 }
 .details-wrapper .card {
   background-color: #343444
 }
+.login-wraper{
+  min-height:100vh;
+}
+
 .loginn{
-  background-image: url("./assets/login.png");
-background-position: center;
-background-size: contain;
-background-attachment: fixed;
-object-fit: contain;
+background-color: rgb(244 127 23);
   width: 100vw;
-  height: calc(100vh - 150px);
+  min-height: calc(100vh - 150px);
   display: grid;
   place-items: center;
 }
+.klaket {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+}
 .login-form {
   width: 300px;
-  /* position:absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%); */
   color: white;
   margin: auto;
-  background-color: rgba(127, 255, 212, 0.1);
+  background-color: rgb(126 88 161 / 87%);
   padding: 30px;
   border-radius: 20px;
   box-shadow:1px 1px 1px  rgb(254, 95, 2),-1px -1px 1px  rgb(254, 95, 2) ;
+}
+.login-form button[type="submit"] {
+  background-color: rgb(244 127 23) !important;
 }
 .search-form{
  height: 65px;
@@ -71,7 +85,7 @@ object-fit: contain;
   /* justify-content: space-around; */
   gap:10px;
   align-items: center;
-  background-color:rgb(63, 81, 180) !important;
+  background-color:rgb(126 88 161 / 87%) !important;
   color: white;
   font-size: 1.2rem;
   font-weight: 700;
@@ -142,6 +156,10 @@ color: rgba(255, 255, 255, 0.865);
   width:100%
 }
 
+.account-wrapper {
+  min-height: calc(100vh-150px) ;
+}
+
 /* scroolbar setting */
 ::-webkit-scrollbar {
   width: 8px;
@@ -200,6 +218,7 @@ border-right: none;
   height: 100px;
   line-height: 100px;
  color: azure;
+ background-color: rgba(144, 101, 184, 0.87) !important;
 }
 .footer-wrapper a{
  text-decoration: none;
@@ -208,4 +227,13 @@ border-right: none;
 .footer-wrapper a:hover{
  text-decoration: underline;
  color: rgb(3, 9, 9);
+}
+.loader{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  background-color: white;
+  display: grid;
+  place-items: center;
 }

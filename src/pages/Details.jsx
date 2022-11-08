@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import Loader from "../component/Loader"
 
 const Details = () => {
   const { id } = useParams()
@@ -8,29 +9,22 @@ const Details = () => {
   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
   const navigate = useNavigate()
   const [filmDetail, setFilmDetail] = useState([])
-  const [video, setVideo] = useState("")
-  const [videoW, setVideoW] = useState(false)
-  const [viewAll, setViewAll] = useState(false)
+  const [loadder, setLoadder] = useState(true)
   useEffect(() => {
+    loadder && <Loader />
     getFilm()
+    setLoadder(false)
   }, [])
 
   const getFilm = async () => {
+    loadder && <Loader />
     const { data } = await axios(url).catch(err => console.log(err))
-    console.log(data)
     setFilmDetail(data);
-    data.video ? setVideo(data.video) : setVideo("")
-    data.video ? setVideoW(true) : setVideoW(false)
-    setViewAll(true)
+    setLoadder(false)
   }
   return (
     <div className="container details-wrapper p-0  text-light d-flex align-items-center flex-column mt-3  mb-5">
 
-      {videoW ? (
-        <div className="embed-responsive embed-responsive-16by9">
-          <iframe className="embed-responsive-item" src={video} ></iframe>
-        </div>
-      ) : (
         <div>
           <figure className="figure p-3" >
             <img
@@ -43,10 +37,6 @@ const Details = () => {
             </figcaption>
           </figure>
         </div>
-      )
-
-      }
-
       <div className=" text-light genres">
         {
           filmDetail.genres?.map((item, i) => {

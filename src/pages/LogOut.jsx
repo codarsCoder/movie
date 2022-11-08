@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 const LogOut = () => {
 const navigate = useNavigate();
-  const {userL,setUserL} =  useLoginContext()
+  const {userL,setUserL,setSearch} =  useLoginContext()
   signOutUser(setUserL);
+  setSearch("")
   !userL.email  && navigate("/")
   return <Toaster />
 }

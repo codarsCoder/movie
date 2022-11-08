@@ -4,6 +4,7 @@ import Search from '../component/Serach'
 import Card from '../component/Card'
 import { Toaster } from 'react-hot-toast'
 import { useLoginContext } from '../context/LoginProvider'
+import Loader from '../component/Loader'
 const Home = () => {
   let api = process.env.REACT_APP_API;
   const [message, setMessage] = useState("")
@@ -32,7 +33,7 @@ const Home = () => {
     <div className="home-wrapper">
       <Search setSearch={setSearch} getFilm={getFilm} search={search} />
       <div className="cart-wrapper  container mb-5">
-        {loading ? <div style={{textAlign:"center"}}>Loading...</div> :  allFilms?.map((item, i) => {
+        {loading ? <Loader/> :  allFilms?.map((item, i) => {
             const { poster_path, original_title, vote_average, overview, id } = item
             const sumItem = { poster_path, original_title, vote_average, overview, id }
             return (

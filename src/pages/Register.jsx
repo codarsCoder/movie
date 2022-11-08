@@ -1,8 +1,7 @@
 import {useState} from 'react'
-import resim from '../assets/login.png'
-import { createUser } from "../auth/firebase"
+import { createUser, signPopup } from "../auth/firebase"
 import { useLoginContext } from "../context/LoginProvider"
-
+import klaket from "../assets/klaket.png"
 const Register = () => {
 
   const [email, setEmail] = useState("")
@@ -14,13 +13,11 @@ const Register = () => {
   }
 
   return (
-    <div className="loginn" style={{  
-      backgroundImage: `url(${resim})`,
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat'
-    }}>
+    <div className="loginn" >
    <form onSubmit={(e)=> handleSubmit(e)} className="login-form">
+   <div className="mb-3 text-center">
+          <img className="klaket" src={klaket} alt="" />
+           </div>
     <h3>Register</h3>
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">
@@ -55,6 +52,9 @@ const Register = () => {
   <button type="submit" className="btn btn-primary">
     Submit
   </button>
+  <button onClick={() => signPopup(setUserL)} className=" btn btn-outline-light d-block mt-2" aria-current="page">
+                Register with google
+              </button>
 </form>
 
    {/* <Toaster position="top-center" /> */}

@@ -1,7 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router-dom"
 import { useLoginContext } from "../context/LoginProvider";
 import { useState ,useEffect} from "react";
-import { signPopup } from "../auth/firebase";
+
 
 const Navbar = () => {
   
@@ -15,7 +15,7 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   return (
-    <nav className="navbar navbar-expand-md navbar-collapse navbar-dark  bg-primary">
+    <nav className="navbar navbar-expand-md navbar-collapse navbar-dark ">
       <div className="container-fluid">
         <Link to="/" className="navbar-brand fs-3" >
           React Movie App
@@ -47,11 +47,7 @@ const Navbar = () => {
                     LogIn
                   </button>
                 </li>
-                <li className="nav-item">
-                  <button onClick={() => signPopup(setUserL)} className=" btn btn-outline-dark" aria-current="page">
-                    LogIn with google
-                  </button>
-                </li>
+               
                 <li className="nav-item">
                   <button onClick={() => navigate("/register")} className=" btn btn-outline-light" aria-current="page">
                     Register

@@ -1,9 +1,19 @@
-const Search = ({setSearch,getFilm,search}) => {
+import { useNavigate } from "react-router-dom";
+import { useLoginContext } from "../context/LoginProvider";
 
+const Search = ({setSearch,getFilm,search}) => {
+    const navigate = useNavigate()
+    const { userL,setUserL,setLoading } = useLoginContext()
 const setText = (e) => {
     e.preventDefault();
-    setSearch(e.target.searchT.value)
-    getFilm(true)
+    if(userL.email){
+        setSearch(e.target.searchT.value)
+        getFilm(true)
+    }else{
+       navigate("/login")
+       setSearch("")
+    }
+ 
 }
 
     return (

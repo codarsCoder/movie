@@ -22,11 +22,11 @@ const RouterApp = () => {
     <Route path="/login" element={<LogIn />} />
     <Route path="/login2" element={<Login2 />} />
     <Route path="/register" element={<Register />} />
-    <Route path="/" element={<PrivateRoute />}>
-    <Route path="" element={<Home />} />
+    <Route path="/details/:id" element={<PrivateRoute />}>
+    <Route path="" element={<Details />} />
     </Route>
     <Route path="/about"  element={<About />} />
-    <Route path="/details/:id"  element={<Details />} />
+    <Route path="/"  element={<Home />} />
     <Route path="*" element={<NotFound/>} />
   </Routes>
   )
