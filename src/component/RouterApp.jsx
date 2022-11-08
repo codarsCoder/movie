@@ -9,6 +9,7 @@ import LogOut from '../pages/LogOut'
 import Register from '../pages/Register'
 import Account from '../pages/Account'
 import PrivateRoute from '../pages/PrivateRoute'
+import Login2 from '../pages/Login2'
 
 
 const RouterApp = () => {
@@ -19,6 +20,7 @@ const RouterApp = () => {
     <Route path="/account" element={<Account />} />
     <Route path="/logout" element={<LogOut />} />
     <Route path="/login" element={<LogIn />} />
+    <Route path="/login2" element={<Login2 />} />
     <Route path="/register" element={<Register />} />
     <Route path="/" element={<PrivateRoute />}>
     <Route path="" element={<Home />} />

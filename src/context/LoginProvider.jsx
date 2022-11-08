@@ -6,10 +6,12 @@ const LoginProvider = ({ children }) => {
   const [userL, setUserL] = useState("");
   const [allFilms, setAllFilms] = useState([]);
   const [search, setSearch] = useState("")
-  const values = { userL, setUserL, allFilms, setAllFilms, search, setSearch };
+  const [loading, setLoading] = useState(true)
+  const values = { userL, setUserL, allFilms, setAllFilms, search, setSearch,loading, setLoading };
 
   useEffect(() => {
-    authControl(setUserL)
+    authControl(setUserL,setLoading)
+    console.log( authControl(setUserL),"login providerden");
   }, [])
   
   return (

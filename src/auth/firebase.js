@@ -22,14 +22,12 @@ export const auth = getAuth(app);
 export const getUser = (email, password, setUserL, setMessage) => {
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // Signed in
+            // Signed in   
             const user = userCredential.user;
-            setUserL({ user: user.reloadUserInfo.email, email: user.reloadUserInfo.email });
+            setUserL(user);
             //  user ?  setUserState({email:"111",password:"2222"}) : setUserState({email:"yok",password:"yok"})
-            const uss = auth.currentUser
         })
         .catch((error) => {
-
             setMessage(error.code.replaceAll("firebase:", ""))
         });
 }
@@ -39,7 +37,7 @@ export const createUser = (email, password, setUserL) => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            setUserL({ user: user.reloadUserInfo.email, email: user.reloadUserInfo.email });
+            setUserL(user);
         })
         .catch((error) => {
             console.log(error);
@@ -49,7 +47,7 @@ export const createUser = (email, password, setUserL) => {
 export const signOutUser = (setUserL) => {
     signOut(auth)
         .then((userCredential) => {
-            setUserL({ user: "", email: "" });
+            setUserL({});
 
         })
         .catch((error) => {
@@ -63,9 +61,7 @@ export const signPopup = (setUserL) => {
         .then((result) => {
             // The signed-in user info.
             const user = result.user;
-            setUserL({ user: user.reloadUserInfo.email, email: user.reloadUserInfo.email });
-
-            console.log(user, "google ile giriş yapıldı");
+            setUserL(user);
         })
         .catch((error) => {
             // Handle Errors here.
@@ -73,14 +69,16 @@ export const signPopup = (setUserL) => {
         });
 }
 
-export const authControl = (setUserL) => {
+export const authControl = (setUserL, setLoading) => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
-          setUserL(user)
-  
+            setUserL(user)
+            setLoading(false)
         } else {
             setUserL(false)
+            console.log("auth control")
+            setLoading(false)
         }
-      });
+    });
 }
 

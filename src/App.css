@@ -13,6 +13,7 @@
 background-position: center;
 background-size: contain;
 background-attachment: fixed;
+object-fit: contain;
   width: 100vw;
   height: calc(100vh - 150px);
   display: grid;
@@ -143,7 +144,7 @@ color: rgba(255, 255, 255, 0.865);
 
 /* scroolbar setting */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   background: transparent;
   border-radius: 3px;
   height: 5px;

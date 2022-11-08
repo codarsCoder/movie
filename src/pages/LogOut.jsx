@@ -6,7 +6,7 @@ const LogOut = () => {
 const navigate = useNavigate();
   const {userL,setUserL} =  useLoginContext()
   signOutUser(setUserL);
-  !userL.email  && navigate("/login")
+  !userL.email  && navigate("/")
   return <Toaster />
 }
 
