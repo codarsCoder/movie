@@ -68,28 +68,28 @@ const Details = () => {
                   {filmDetail.overview}
                 </p>
                 <p className="card-text">
-                  <span className='fs-5'>Language : </span> {filmDetail.original_language}
+                  <span className='fs-4'>Language : </span> {filmDetail.original_language}
                 </p>
                 <p className="card-text">
-                  <span className='fs-5'>Original Title : </span> {filmDetail.original_title}
+                  <span className='fs-4'>Original Title : </span> {filmDetail.original_title}
                 </p>
                 <p className="card-text">
-                  <span className='fs-5'>Vote : </span>{filmDetail.vote_count}
+                  <span className='fs-4'>Vote : </span>{filmDetail.vote_count}
                 </p>
                 <p className="card-text">
-                  <span className='fs-5'>Average : </span>{filmDetail.vote_average}
+                  <span className='fs-4'>Average : </span>{filmDetail.vote_average}
 
                 </p>
                 <p className="card-text">
-                  <span className='fs-5'>Runtime : </span>{filmDetail.runtime} M.
+                  <span className='fs-4'>Runtime : </span>{filmDetail.runtime} M.
 
                 </p>
                 <p className="card-text">
-                  <span className='fs-5'>Relase Date : </span>{filmDetail.release_date}
+                  <span className='fs-4'>Relase Date : </span>{filmDetail.release_date}
 
                 </p>
                 <p className="card-text">
-                  <span className='fs-5'>Home Page : </span><a target="_blank" href={filmDetail.homepage}>{filmDetail.homepage}</a>
+                  <span className='fs-4'>Home Page : </span><a target="_blank" href={filmDetail.homepage}>{filmDetail.homepage}</a>
                 </p>
               </div>
             </div>

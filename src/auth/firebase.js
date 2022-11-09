@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 const firebaseConfig = {
     apiKey: "AIzaSyDK7W_BY5MD9gw1KJ7sdcNfbZtD5cE-rIU",
     authDomain: "mydb-10cd6.firebaseapp.com",
@@ -13,7 +14,7 @@ const firebaseConfig = {
 
 
 const app = initializeApp(firebaseConfig);
-
+export const storage = getStorage(app)
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
 export const getUser = (email, password, setUserL, setMessage) => {
@@ -69,7 +70,9 @@ export const signPopup = (setUserL) => {
 export const authControl = (setUserL, setLoading) => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            setUserL(user)
+            const { email, displayName, photoURL } = user;
+            setUserL({ email, displayName, photoURL });
+           
             setLoading(false)
         } else {
             setUserL(false)
@@ -79,3 +82,14 @@ export const authControl = (setUserL, setLoading) => {
     });
 }
 
+export const  updateUserProfile = (photo)=> {
+    updateProfile(auth.currentUser, {
+        displayName: "Jane Q. User",
+        photoURL: photo
+      }).then(() => {
+       console.log("ok")
+      }).catch((error) => {
+        // An error occurred
+        // ...
+      });
+}

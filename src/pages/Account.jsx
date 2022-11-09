@@ -1,24 +1,67 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import { storage, updateUserProfile } from '../auth/firebase';
+
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  list,
+} from "firebase/storage";
+
+
 
 const Account = () => {
-  const [first, setFirst] = useState(false)
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrls, setImageUrls] = useState([]);
+
+
+
+  const imagesListRef = ref(storage, "profile/");    //klasör ismini belirle
+  const uploadFile = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `profile/${new Date().getTime()+imageUpload.name}`);  
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls([url]);
+        console.log(url,"urlm")
+        updateUserProfile(url)
+      });
+    });
+  };
  
+  // useEffect(() => {
+  //   listAll(imagesListRef).then((response) => {
+  //     response.items.forEach((item) => {
+  //       getDownloadURL(item).then((url) => {
+  //         setImageUrls((prev) => [...prev, url]);
+  //       });
+  //     });
+  //   });
+  // }, []);
+
+
+
+
+
   return (
-<>
-<div className="card col-2 border-warning card-wr-bg"> <img src="images/buildings-skyline.jpg" className="card-img-top" alt="..." />
-  <div className="card-body d-grid gap-3">
-    <h5 className="card-title text-center text-capitalize">Silver</h5>
-    <p className="card-text text-center p-0 pb-3">This card has supporting text below as a natural lead-in to additional content.</p>
-  </div>
-  <div className="card-footer text-light bg-warning"> 
-    <div><i className="bi bi-facebook" /></div>
-    <div><i className="bi bi-twitter" /></div>
-    <div><i className="bi bi-youtube" /></div>
-    <div><i className="bi bi-linkedin" /></div>
-  </div>
-</div>
- </>
+    <>
+        <input
+    type="file"
+    onChange={(event) => {
+      setImageUpload(event.target.files[0]);
+    }}
+  />
+  <button onClick={uploadFile}> Upload Image</button>
+  {imageUrls.map((url) => {
+    return ( <div style={{color:"white"}}>{imageUrls[0]} </div> );
+  })}
+
+    </>
+
   )
+
+
 }
 
 export default Account

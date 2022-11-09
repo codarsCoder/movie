@@ -23,7 +23,7 @@ const setText = (e) => {
       <div className="col-8 me-3 d-flex align-items-center">
           <input
           name="searchT"
-              type="text"
+              type="search"
               className="form-control"
               placeholder="Search"
               value={search}

@@ -5,44 +5,48 @@ import Card from '../component/Card'
 import { Toaster } from 'react-hot-toast'
 import { useLoginContext } from '../context/LoginProvider'
 import Loader from '../component/Loader'
+import { auth } from '../auth/firebase'
 const Home = () => {
   let api = process.env.REACT_APP_API;
   const [message, setMessage] = useState("")
   const [textInput, setTextInput] = useState("")
   const { search, setSearch } = useLoginContext()
-  const { userL,allFilms, setAllFilms,loading } = useLoginContext()
+  const { userL, allFilms, setAllFilms, loading } = useLoginContext()
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${api}&query=${search}`;
   const url2 = `https://api.themoviedb.org/3/discover/movie?api_key=${api}`
-
-  console.log(userL.email,"userl-home");
+  const [resim, setResim] = useState("")
   useEffect(() => {
     if (search) {
       getFilm(true)
-      
+
     } else {
       getFilm(false)
     }
+  }, [])
+  useEffect(() => {
+    setResim(userL.photoURL)
   }, [])
 
   const getFilm = async (prob) => {
     const { data } = await axios(prob ? url : url2).catch(err => console.log(err))
     setAllFilms(data.results);
-    console.log(data.results,"home")
+    console.log(data.results, "home")
   }
-  return ( 
+  return (
     <div className="home-wrapper">
       <Search setSearch={setSearch} getFilm={getFilm} search={search} />
+      {/* <img with={"100px"} height={"100px"} src={userL.photoURL} alt="" /> */}
       <div className="cart-wrapper  container mb-5">
-        {loading ? <Loader/> :  allFilms?.map((item, i) => {
-            const { poster_path, original_title, vote_average, overview, id } = item
-            const sumItem = { poster_path, original_title, vote_average, overview, id }
-            return (
-              <Card key={i} {...sumItem} />
-            )
-          }) }
+        {loading ? <Loader /> : allFilms?.map((item, i) => {
+          const { poster_path, original_title, vote_average, overview, id } = item
+          const sumItem = { poster_path, original_title, vote_average, overview, id }
+          return (
+            <Card key={i} {...sumItem} />
+          )
+        })}
         <Toaster />
       </div>
-      </div>
+    </div>
   )
 }
 
