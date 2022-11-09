@@ -32,11 +32,11 @@ const setText = (e) => {
           />
       </div>
       <div className="col-3 d-flex align-items-center">
-          <button type="submit" className="btn btn-primary mb-3 ">
+          <button type="submit" className="btn btn-primary  ">
               Search
           </button>
-          <button onClick={()=>getFavoriFilm()} type="button" className="btn btn-primary mb-3 ">
-              favr
+          <button  onClick={getFavoriFilm} type="button" className="btn btn-danger  ms-3">
+              Favories
           </button>
       </div>
   </form>

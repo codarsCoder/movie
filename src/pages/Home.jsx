@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast'
 import { useLoginContext } from '../context/LoginProvider'
 import Loader from '../component/Loader'
 import { auth } from '../auth/firebase'
+import { setLogLevel } from 'firebase/app'
 const Home = () => {
   let api = process.env.REACT_APP_API;
   const [message, setMessage] = useState("")
@@ -20,14 +21,15 @@ const Home = () => {
   useEffect(() => {
     if (search) {
       getFilm(true)
-
     } else {
       getFilm(false)
     }
   }, [])
-  useEffect(() => {
-    setResim(userL.photoURL)
-  }, [])
+
+  // useEffect(() => {
+  //   setResim(userL.photoURL)
+  // }, [])
+
 
 
   const getFilm = async (prob) => {
@@ -43,11 +45,10 @@ const Home = () => {
     favoriList.map(item => {
        urlDetail = `https://api.themoviedb.org/3/movie/${item}?api_key=${api}`
          axios.get(urlDetail).then((res) => {  wrokList.push(res.data)}).catch(err => console.log(err)) 
-          console.log(wrokList)
+         setLastList(wrokList)
+         setLastList(wrokList)
     })
-    setLastList(wrokList)
- console.log(wrokList)
-  
+    
     setAllFilms(lastList)
   }
  
