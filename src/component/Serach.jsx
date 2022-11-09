@@ -35,7 +35,7 @@ const setText = (e) => {
           <button type="submit" className="btn btn-primary mb-3 ">
               Search
           </button>
-          <button onClick={getFavoriFilm} type="button" className="btn btn-primary mb-3 ">
+          <button onClick={()=>getFavoriFilm()} type="button" className="btn btn-primary mb-3 ">
               favr
           </button>
       </div>

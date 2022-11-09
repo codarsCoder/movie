@@ -23,7 +23,6 @@ const Card = ({ poster_path, original_title, vote_average, overview, id, getFilm
 
     useEffect(() => {
         setFavoris()
-        console.log("getfilm çalıştı");
     }, [favori, getFilm])
 
 

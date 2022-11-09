@@ -13,10 +13,9 @@ const Home = () => {
   const { search, setSearch } = useLoginContext()
   const { userL, allFilms, setAllFilms, loading } = useLoginContext()
   const [resim, setResim] = useState("")
-  const [lastList, setLastList] = useState()
+  const [lastList, setLastList] = useState([])
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${api}&query=${search}`;
   const url2 = `https://api.themoviedb.org/3/discover/movie?api_key=${api}`
-
 
   useEffect(() => {
     if (search) {
@@ -36,21 +35,20 @@ const Home = () => {
     setAllFilms(data.results);
     // console.log(data.results, "home")
   }
-
-
-  const getFavoriFilm = () => {
-
-    let favoriList = JSON.parse(localStorage.getItem(userL.email)) || []
-    console.log(favoriList);
-    favoriList.map(item => {
-      const urlDetail = `https://api.themoviedb.org/3/movie/${item}?api_key=${api}`
-         axios.get(urlDetail).then((res) => { return setLastList([...lastList,res.data]) }).catch(err => console.log(err)) 
-      console.log(lastList)
-    })
-    
-        
   
-  //   setAllFilms(lastList)
+  const getFavoriFilm = () => {
+    let wrokList = []
+    let  urlDetail 
+    let favoriList = JSON.parse(localStorage.getItem(userL.email)) || []
+    favoriList.map(item => {
+       urlDetail = `https://api.themoviedb.org/3/movie/${item}?api_key=${api}`
+         axios.get(urlDetail).then((res) => {  wrokList.push(res.data)}).catch(err => console.log(err)) 
+          console.log(wrokList)
+    })
+    setLastList(wrokList)
+ console.log(wrokList)
+  
+    setAllFilms(lastList)
   }
  
 
