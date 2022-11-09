@@ -72,7 +72,7 @@ export const authControl = (setUserL, setLoading) => {
         if (user) {
             const { email, displayName, photoURL } = user;
             setUserL({ email, displayName, photoURL });
-           
+
             setLoading(false)
         } else {
             setUserL(false)
@@ -82,14 +82,32 @@ export const authControl = (setUserL, setLoading) => {
     });
 }
 
-export const  updateUserProfile = (photo)=> {
+export const updateUserProfile = (photo) => {
     updateProfile(auth.currentUser, {
         displayName: "Jane Q. User",
         photoURL: photo
-      }).then(() => {
-       console.log("ok")
-      }).catch((error) => {
+    }).then(() => {
+        console.log("ok")
+    }).catch((error) => {
         // An error occurred
         // ...
-      });
+    });
+}
+
+
+export const addFavorite = (id, setFavori) => {
+
+    if (auth.currentUser) {
+        let foavoriList = JSON.parse(localStorage.getItem(auth.currentUser.email)) || []
+        if (foavoriList.includes(id)) {
+            let lastList = foavoriList.filter(item => item != id)
+            localStorage.setItem(auth.currentUser.email, JSON.stringify(lastList));
+        } else {
+            localStorage.setItem(auth.currentUser.email, JSON.stringify([...foavoriList, id]));
+        }
+        setFavori(JSON.parse(localStorage.getItem(auth.currentUser.email)))
+    } else {
+        alert("giriş")
+    }
+
 }

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useLoginContext } from "../context/LoginProvider";
 
-const Search = ({setSearch,getFilm,search}) => {
+const Search = ({setSearch,getFilm,search,getFavoriFilm}) => {
     const navigate = useNavigate()
     const { userL,setUserL,setLoading } = useLoginContext()
 const setText = (e) => {
@@ -34,6 +34,9 @@ const setText = (e) => {
       <div className="col-3 d-flex align-items-center">
           <button type="submit" className="btn btn-primary mb-3 ">
               Search
+          </button>
+          <button onClick={getFavoriFilm} type="button" className="btn btn-primary mb-3 ">
+              favr
           </button>
       </div>
   </form>

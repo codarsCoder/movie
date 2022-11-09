@@ -22,7 +22,6 @@ const LogIn = () => {
     getMessage()
   }, [message])
 
-  console.log(userL.email, "login");
   //   var seconds = 1667544020351;
   // let time = new Date(seconds)
   // let normalDate = new Date(seconds).toLocaleString('tr-TR')

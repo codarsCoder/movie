@@ -7,26 +7,32 @@ const Details = () => {
   const { id } = useParams()
   let apiKey = process.env.REACT_APP_API;
   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
+  const videoUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}`;
   const navigate = useNavigate()
   const [filmDetail, setFilmDetail] = useState([])
   const [loadder, setLoadder] = useState(true)
+  const [video, setVideo] = useState("")
+
   useEffect(() => {
     loadder && <Loader />
     getFilm()
     setLoadder(false)
   }, [])
-
+  
   const getFilm = async () => {
     loadder && <Loader />
     const { data } = await axios(url).catch(err => console.log(err))
+    const {data:{results}} = await axios(videoUrl).catch(err => console.log(err))
     setFilmDetail(data);
+    setVideo(results[0].key)
     setLoadder(false)
-  }
+  } 
   return (
-    <div className="container details-wrapper p-0  text-light d-flex align-items-center flex-column mt-3  mb-5">
+    <div className="container details-wrapper   text-light d-flex align-items-center flex-column mt-3  mb-5">
 
-        <div>
-          <figure className="figure p-3" >
+        <div className='row'>
+          <div className="col-md-6 col-12">
+               <figure className="figure" >
             <img
               src={`https://image.tmdb.org/t/p/w1280${filmDetail.backdrop_path}`}
               className="figure-img img-fluid rounded"
@@ -36,6 +42,17 @@ const Details = () => {
 
             </figcaption>
           </figure>
+          </div>
+          <div className="col-md-6 col-12 rounded">
+           <iframe
+              src={`https://www.youtube.com/embed/${video}?autoplay=0&mute=1`}
+              title="YouTube video"
+              allowFullScreen
+              width="100%"
+              height="95%"
+            ></iframe>
+          </div>
+       
         </div>
       <div className=" text-light genres">
         {
@@ -96,7 +113,7 @@ const Details = () => {
           </div>
         </div>
       </div>
-      <button onClick={() => navigate(-1)} className="btn btn-link mt-5 fs-5">Go Back</button>
+      <button onClick={() => navigate(-1)} className="btn btn-link mt-5 fs-5 text-light">Go Back</button>
     </div>
   )
 }

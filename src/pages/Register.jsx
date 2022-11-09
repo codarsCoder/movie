@@ -2,6 +2,8 @@ import {useState} from 'react'
 import { createUser, signPopup } from "../auth/firebase"
 import { useLoginContext } from "../context/LoginProvider"
 import klaket from "../assets/klaket.png"
+import { Toaster } from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 const Register = () => {
 
   const [email, setEmail] = useState("")
@@ -12,7 +14,10 @@ const Register = () => {
     createUser(email, password,setUserL)
   }
 
+  const navigate = useNavigate()
   return (
+    <>
+    {userL.email && navigate("/")}
     <div className="loginn" >
    <form onSubmit={(e)=> handleSubmit(e)} className="login-form">
    <div className="mb-3 text-center">
@@ -43,12 +48,7 @@ const Register = () => {
       onChange={(e)=>setPassword(e.target.value)}
     />
   </div>
-  {/* <div className="mb-3 form-check">
-    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-    <label className="form-check-label" htmlFor="exampleCheck1">
-      Check me out
-    </label>
-  </div> */}
+
   <button type="submit" className="btn btn-primary">
     Submit
   </button>
@@ -57,8 +57,9 @@ const Register = () => {
               </button>
 </form>
 
-   {/* <Toaster position="top-center" /> */}
+   <Toaster position="top-center" />
     </div>
+    </>
   )
 }
 
