@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useLoginContext } from "../context/LoginProvider";
 
-const Search = ({setSearch,getFilm,search,getFavoriFilm}) => {
+const Search = ({setSearch,getFilm,search}) => {
     const navigate = useNavigate()
-    const { userL,setUserL,setLoading } = useLoginContext()
+    const { userL,setUserL,setLoading,getFavoriFilm } = useLoginContext()
+    
 const setText = (e) => {
     e.preventDefault();
     if(userL.email){

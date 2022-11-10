@@ -8,15 +8,15 @@ import Loader from '../component/Loader'
 import { auth } from '../auth/firebase'
 import { setLogLevel } from 'firebase/app'
 const Home = () => {
-  let api = process.env.REACT_APP_API;
+
   const [message, setMessage] = useState("")
   const [textInput, setTextInput] = useState("")
   const { search, setSearch } = useLoginContext()
-  const { userL, allFilms, setAllFilms, loading } = useLoginContext()
+  const { userL, allFilms, setAllFilms, loading,getFavoriFilm,getFilm } = useLoginContext()
   const [resim, setResim] = useState("")
-  const [lastList, setLastList] = useState([])
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${api}&query=${search}`;
-  const url2 = `https://api.themoviedb.org/3/discover/movie?api_key=${api}`
+  const [favoriFilm, setFavoriFilm] = useState([])
+
+
 
   useEffect(() => {
     if (search) {
@@ -26,39 +26,17 @@ const Home = () => {
     }
   }, [])
 
-  // useEffect(() => {
-  //   setResim(userL.photoURL)
-  // }, [])
+    useEffect(() => {
+  setAllFilms(favoriFilm)
+    }, [favoriFilm])
 
-
-
-  const getFilm = async (prob) => {
-    const { data } = await axios(prob ? url : url2).catch(err => console.log(err))
-    setAllFilms(data.results);
-    // console.log(data.results, "home")
-  }
-  
-  const getFavoriFilm = () => {
-    let wrokList = []
-    let  urlDetail 
-    let favoriList = JSON.parse(localStorage.getItem(userL.email)) || []
-    favoriList.map(item => {
-       urlDetail = `https://api.themoviedb.org/3/movie/${item}?api_key=${api}`
-         axios.get(urlDetail).then((res) => {  wrokList.push(res.data)}).catch(err => console.log(err)) 
-         setLastList(wrokList)
-         setLastList(wrokList)
-    })
-    
-    setAllFilms(lastList)
-  }
- 
 
   return (
     <div className="home-wrapper">
-      <Search setSearch={setSearch} getFilm={getFilm} search={search} getFavoriFilm={getFavoriFilm} />
+      <Search setSearch={setSearch} getFilm={getFilm} search={search} />
       {/* <img with={"100px"} height={"100px"} src={userL.photoURL} alt="" /> */}
       <div className="cart-wrapper  container mb-5">
-        {loading ? <Loader /> : allFilms?.map((item, i) => {
+        {loading ? <Loader /> : allFilms.map((item, i) => {
           const { poster_path, original_title, vote_average, overview, id } = item
           const sumItem = { poster_path, original_title, vote_average, overview, id }
           return (
