@@ -8,7 +8,7 @@ import { useLoginContext } from "../context/LoginProvider"
 const Card = ({ poster_path, original_title, vote_average, overview, id, getFilm }) => {
 
     const navigate = useNavigate()
-    const { userL, search } = useLoginContext()
+    const { userL, search ,allFilm} = useLoginContext()
     const [favori, setFavori] = useState(JSON.parse(localStorage.getItem(userL.email)) || [])
     const [fvr, setFvr] = useState("")
 

@@ -26,17 +26,14 @@ const Home = () => {
     }
   }, [])
 
-    useEffect(() => {
-  setAllFilms(favoriFilm)
-    }, [favoriFilm])
-
 
   return (
     <div className="home-wrapper">
       <Search setSearch={setSearch} getFilm={getFilm} search={search} />
       {/* <img with={"100px"} height={"100px"} src={userL.photoURL} alt="" /> */}
       <div className="cart-wrapper  container mb-5">
-        {loading ? <Loader /> : allFilms.map((item, i) => {
+        {
+        loading ? <Loader /> : allFilms.map((item, i) => {
           const { poster_path, original_title, vote_average, overview, id } = item
           const sumItem = { poster_path, original_title, vote_average, overview, id }
           return (

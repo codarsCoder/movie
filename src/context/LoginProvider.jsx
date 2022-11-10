@@ -21,22 +21,23 @@ const LoginProvider = ({ children }) => {
   const getFavoriFilm = () => {
     let wrokList = []
     let favoriList = JSON.parse(localStorage.getItem(userL.email)) || []
-    console.log(favoriList)
+var i = 0;
     favoriList.map(async (item) => {
-    
+    i += 5;
       try { 
         const data = await axios(`https://api.themoviedb.org/3/movie/${item}?api_key=${api}`)
         wrokList.push(data.data)
-      
+        console.log(wrokList);
       } catch (error) {
         console.log(error);
       }
      
     })
- console.log(wrokList);
+
      setTimeout(() => {
       setAllFilms(wrokList)
-     }, 100); 
+      console.log(i);
+     }, i); 
   }
 
   const values = { userL, setUserL, allFilms, setAllFilms, search, setSearch,loading, setLoading,getFilm,getFavoriFilm };
