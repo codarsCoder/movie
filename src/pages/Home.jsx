@@ -25,8 +25,11 @@ const Home = () => {
       getFilm(false)
     }
   }, [])
-
-
+  
+  let foavoriList = JSON.parse(localStorage.getItem(userL.email)) || []
+  // foavoriList =   foavoriList.map(item => item.genres).filter(item=> item.name == "Thriller");
+   foavoriList =   foavoriList.map(item =>console.log(item.name)) ;
+   console.log(foavoriList);
   return (
     <div className="home-wrapper">
       <Search setSearch={setSearch} getFilm={getFilm} search={search} />
@@ -37,7 +40,7 @@ const Home = () => {
           const { poster_path, original_title, vote_average, overview, id } = item
           const sumItem = { poster_path, original_title, vote_average, overview, id }
           return (
-            <Card key={i} {...sumItem} getFilm={getFilm} />
+            <Card key={i} {...sumItem} getFilm={getFilm} search={search} getFavoriFilm={getFavoriFilm}/>
           )
         })}
         <Toaster />

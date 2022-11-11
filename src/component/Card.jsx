@@ -5,7 +5,7 @@ import { useLoginContext } from "../context/LoginProvider"
 
 
 
-const Card = ({ poster_path, original_title, vote_average, overview, id, getFilm }) => {
+const Card = ({ poster_path, original_title, vote_average, overview, id, getFilm,getFavoriFilm }) => {
 
     const navigate = useNavigate()
     const { userL, search ,allFilm} = useLoginContext()
@@ -14,10 +14,12 @@ const Card = ({ poster_path, original_title, vote_average, overview, id, getFilm
 
     const setFavoris = () => {
         setFvr("")
-        if (favori.includes(id)) {
+        if (favori.find(item => item.id == id)) {
             setFvr("slct")
+           
         } else {
             setFvr("")
+          
         }
     }
 

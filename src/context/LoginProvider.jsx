@@ -18,25 +18,11 @@ const LoginProvider = ({ children }) => {
     // console.log(data.results, "home")
   }
 
-  const getFavoriFilm = () => {
-    let wrokList = []
-    let favoriList = JSON.parse(localStorage.getItem(userL.email)) || []
-var i = 0;
-    favoriList.map(async (item) => {
-    i += 2;
-      try { 
-        const data = await axios(`https://api.themoviedb.org/3/movie/${item}?api_key=${api}`)
-        wrokList.push(data.data)
-      } catch (error) {
-        console.log(error);
-      }
-     
-    })
+   const getFavoriFilm = () => {
 
-     setTimeout(() => {
-      setAllFilms(wrokList)
-      console.log(i);
-     }, i); 
+    let favoriList = JSON.parse(localStorage.getItem(userL.email)) || []
+    setAllFilms(favoriList)
+ 
   }
 
   const values = { userL, setUserL, allFilms, setAllFilms, search, setSearch,loading, setLoading,getFilm,getFavoriFilm };

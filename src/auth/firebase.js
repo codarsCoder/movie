@@ -1,6 +1,8 @@
+import axios from 'axios';
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
+import { useLoginContext } from '../context/LoginProvider';
 const firebaseConfig = {
     apiKey: "AIzaSyDK7W_BY5MD9gw1KJ7sdcNfbZtD5cE-rIU",
     authDomain: "mydb-10cd6.firebaseapp.com",
@@ -95,19 +97,27 @@ export const updateUserProfile = (photo) => {
 }
 
 
-export const addFavorite = (id, setFavori) => {
-
+export const addFavorite = async(fId, setFavori,search) => {
+    
+    let api = process.env.REACT_APP_API;
     if (auth.currentUser) {
         let foavoriList = JSON.parse(localStorage.getItem(auth.currentUser.email)) || []
-        if (foavoriList.includes(id)) {
-            let lastList = foavoriList.filter(item => item != id)
-            localStorage.setItem(auth.currentUser.email, JSON.stringify(lastList));
+      const res =   foavoriList.find(item => item.id == fId)
+
+        
+        if (!res) {
+            const {data} = await axios(`https://api.themoviedb.org/3/movie/${fId}?api_key=${api}`)
+            const { poster_path, original_title, vote_average, overview,genres, id } = data
+            const sumItem = { poster_path, original_title, vote_average, overview,genres, id }
+            foavoriList = [...foavoriList,sumItem]
+            localStorage.setItem(auth.currentUser.email, JSON.stringify(foavoriList));
         } else {
-            localStorage.setItem(auth.currentUser.email, JSON.stringify([...foavoriList, id]));
+            foavoriList =   foavoriList.filter(item => item.id != fId);
+            localStorage.setItem(auth.currentUser.email, JSON.stringify(foavoriList));
         }
         setFavori(JSON.parse(localStorage.getItem(auth.currentUser.email)))
     } else {
-        alert("giriş")
+        alert("giriş yapınız")
     }
 
 }
