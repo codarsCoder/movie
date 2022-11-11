@@ -23,11 +23,10 @@ const LoginProvider = ({ children }) => {
     let favoriList = JSON.parse(localStorage.getItem(userL.email)) || []
 var i = 0;
     favoriList.map(async (item) => {
-    i += 5;
+    i += 2;
       try { 
         const data = await axios(`https://api.themoviedb.org/3/movie/${item}?api_key=${api}`)
         wrokList.push(data.data)
-        console.log(wrokList);
       } catch (error) {
         console.log(error);
       }
