@@ -1,6 +1,6 @@
 # REACT MOVİE APP
 ## Bootstrap-css-js
-## Firebaseauthentication
+## Firebase authentication
 ## Context api
 ## Axios
 ## Add Favories
