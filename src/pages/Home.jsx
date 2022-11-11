@@ -27,9 +27,11 @@ const Home = () => {
   }, [])
   
   let foavoriList = JSON.parse(localStorage.getItem(userL.email)) || []
+  let kkk ="Horror"
+  let gg = []
   // foavoriList =   foavoriList.map(item => item.genres).filter(item=> item.name == "Thriller");
-   foavoriList =   foavoriList.map(item =>console.log(item.name)) ;
-   console.log(foavoriList);
+   foavoriList = foavoriList.map(item =>item.genres.map(it=>it.name).map(ii=>ii==`${kkk}` && gg.push(item))) ;
+   console.log(gg);
   return (
     <div className="home-wrapper">
       <Search setSearch={setSearch} getFilm={getFilm} search={search} />
