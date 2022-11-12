@@ -12,10 +12,10 @@ const LoginProvider = ({ children }) => {
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${api}&query=${search}`;
   const url2 = `https://api.themoviedb.org/3/discover/movie?api_key=${api}`
 
-  const getFilm = async (prob) => {
+    const getFilm = async (prob) => {
     const { data } = await axios(prob ? url : url2).catch(err => console.log(err))
     setAllFilms(data.results);
-    // console.log(data.results, "home")
+
   }
 
    const getFavoriFilm = () => {

@@ -24,7 +24,6 @@ const Account = () => {
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageUrls([url]);
-        console.log(url,"urlm")
         updateUserProfile(url)
       });
     });

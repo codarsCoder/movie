@@ -43,7 +43,7 @@ export const createUser = (email, password, setUserL) => {
             console.log(error);
         });
 }
-console.log(auth)
+
 export const signOutUser = (setUserL) => {
     signOut(auth)
         .then((userCredential) => {

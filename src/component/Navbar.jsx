@@ -4,20 +4,24 @@ import { useState ,useEffect} from "react";
 
 
 const Navbar = () => {
+  const { userL, setUserL,setSearch,search,getFilm } = useLoginContext()
   
   useEffect(() => {
     setLogin(true)
   }, [])
   
-  const [login, setLogin] = useState(false)
-  const { userL, setUserL } = useLoginContext()
 
+  
+  const [login, setLogin] = useState(false)
+const searchZero = ()=>{
+  setSearch("")
+}
 
   const navigate = useNavigate();
   return (
     <nav className="navbar navbar-expand-md navbar-collapse navbar-dark ">
       <div className="container-fluid">
-        <Link to="/" className="navbar-brand fs-3" >
+        <Link onClick={searchZero} to="/" className="navbar-brand fs-3" >
           React Movie App
         </Link>
         <button
