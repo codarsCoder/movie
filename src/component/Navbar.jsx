@@ -14,7 +14,10 @@ const Navbar = () => {
   
   const [login, setLogin] = useState(false)
 const searchZero = ()=>{
-  setSearch("")
+  setTimeout(() => {
+    setSearch("")
+  }, 10);
+  
 }
 
   const navigate = useNavigate();

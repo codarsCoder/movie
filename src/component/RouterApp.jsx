@@ -28,6 +28,7 @@ const RouterApp = () => {
     <Route path="/about"  element={<About />} />
     <Route path="/"  element={<Home />} />
     <Route path="*" element={<NotFound/>} />
+    <Route path="/*" element={<NotFound/>} />
   </Routes>
   )
 }
