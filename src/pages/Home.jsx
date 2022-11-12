@@ -17,7 +17,7 @@ const Home = () => {
   const [favoriFilm, setFavoriFilm] = useState([])
 
 
-
+  
   useEffect(() => {
     if (search) {
       getFilm(true)
